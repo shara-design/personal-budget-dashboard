@@ -187,6 +187,44 @@
             background: var(--card-hover);
         }
 
+        .expense-table tr.section-header td {
+            background: transparent !important;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 18px 12px 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-essential td {
+            color: var(--green);
+            border-bottom-color: rgba(0,184,148,0.3) !important;
+        }
+
+        .section-nonessential td {
+            color: var(--orange);
+            border-bottom-color: rgba(253,203,110,0.3) !important;
+            padding-top: 28px !important;
+        }
+
+        .section-total {
+            float: right;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: none;
+            letter-spacing: normal;
+            opacity: 0.85;
+        }
+
+        .empty-section {
+            text-align: center;
+            padding: 16px;
+            color: var(--text-dim);
+            font-style: italic;
+            font-size: 0.85rem;
+        }
+
         .badge {
             display: inline-block;
             padding: 3px 10px;
@@ -1112,20 +1150,18 @@
             'Créditos/Deudas': 'cat-creditos', 'Entretenimiento': 'cat-entretenimiento', 'Familia': 'cat-familia'
         };
 
-        // Sort: Esenciales first, then No Esenciales
-        const sorted = cm().expenses
-            .map((e, i) => ({ ...e, _origIdx: i }))
-            .sort((a, b) => {
-                if (a.type === 'E' && b.type !== 'E') return -1;
-                if (a.type !== 'E' && b.type === 'E') return 1;
-                return 0;
-            });
-
         const categories = ['Hogar','Comida','Transporte','Educación','Créditos/Deudas','Entretenimiento','Familia'];
         const types = [{v:'E',l:'Esencial'},{v:'NE',l:'No Esencial'}];
         const freqs = ['Mensual','Bimensual','Trimestral','Semestral','Anual'];
 
-        tbody.innerHTML = sorted.map(e => {
+        const withIdx = cm().expenses.map((e, i) => ({ ...e, _origIdx: i }));
+        const essentials = withIdx.filter(e => e.type === 'E');
+        const nonEssentials = withIdx.filter(e => e.type !== 'E');
+
+        const essentialTotal = essentials.reduce((s, e) => s + toMonthly(e.amount, e.freq), 0);
+        const nonEssentialTotal = nonEssentials.reduce((s, e) => s + toMonthly(e.amount, e.freq), 0);
+
+        const rowTpl = e => {
             const i = e._origIdx;
             return `
             <tr>
@@ -1155,7 +1191,27 @@
                 <td class="monthly-cell" id="monthly-${i}">${fmt(toMonthly(e.amount, e.freq))}</td>
                 <td><button class="delete-btn" onclick="deleteExpense(${i})" title="Eliminar">✕</button></td>
             </tr>`;
-        }).join('');
+        };
+
+        let html = '';
+
+        // Essentials section
+        html += `<tr class="section-header section-essential"><td colspan="8">✅ Esenciales <span class="section-total">${fmt(essentialTotal)} /mes</span></td></tr>`;
+        if (essentials.length === 0) {
+            html += '<tr><td colspan="8" class="empty-section">Sin gastos esenciales</td></tr>';
+        } else {
+            html += essentials.map(rowTpl).join('');
+        }
+
+        // Non-essentials section
+        html += `<tr class="section-header section-nonessential"><td colspan="8">✨ No Esenciales <span class="section-total">${fmt(nonEssentialTotal)} /mes</span></td></tr>`;
+        if (nonEssentials.length === 0) {
+            html += '<tr><td colspan="8" class="empty-section">Sin gastos no esenciales</td></tr>';
+        } else {
+            html += nonEssentials.map(rowTpl).join('');
+        }
+
+        tbody.innerHTML = html;
     }
 
     function liveUpdateField(el) {
