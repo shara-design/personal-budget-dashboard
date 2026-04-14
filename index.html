@@ -9,17 +9,17 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg: #0f1117;
-            --card: #1a1d27;
-            --card-hover: #222633;
-            --accent: #6c5ce7;
-            --accent-light: #a29bfe;
-            --green: #00b894;
-            --red: #ff6b6b;
-            --orange: #fdcb6e;
-            --text: #dfe6e9;
-            --text-dim: #636e72;
-            --border: #2d3436;
+            --bg: #0e2a2a;
+            --card: #163838;
+            --card-hover: #1d4545;
+            --accent: #4ecdc4;
+            --accent-light: #7ee8e0;
+            --green: #2ecc71;
+            --red: #e74c3c;
+            --orange: #f39c12;
+            --text: #ecf0f1;
+            --text-dim: #7f9c9c;
+            --border: #1e4a4a;
         }
 
         body {
@@ -670,7 +670,7 @@
         <span class="st-label">Ahorro del mes (restado del disponible)</span>
         <span class="st-value" id="savingsTotalDisplay">$ 0</span>
     </div>
-    <div class="savings-total-bar" style="margin-top: 10px; border-color: rgba(108,92,231,0.3); background: rgba(108,92,231,0.08);">
+    <div class="savings-total-bar" style="margin-top: 10px; border-color: rgba(78,205,196,0.3); background: rgba(108,92,231,0.08);">
         <span class="st-label">Ahorro Global (todo lo de esta sección)</span>
         <span class="st-value" id="savingsGlobalDisplay" style="color: var(--accent-light);">$ 0</span>
     </div>
@@ -1074,7 +1074,7 @@
     let charts = {};
 
     const catColors = {
-        'Hogar': '#6c5ce7',
+        'Hogar': '#4ecdc4',
         'Comida': '#00b894',
         'Transporte': '#0984e3',
         'Educación': '#00cec9',
@@ -1155,7 +1155,7 @@
                 datasets: [{
                     label: 'Gastos',
                     data: barData,
-                    backgroundColor: MONTHS.map((_, i) => i === currentMonth ? '#6c5ce7' : 'rgba(108,92,231,0.3)'),
+                    backgroundColor: MONTHS.map((_, i) => i === currentMonth ? '#4ecdc4' : 'rgba(78,205,196,0.3)'),
                     borderRadius: 6,
                     barThickness: 24
                 }]
@@ -1197,7 +1197,7 @@
                 datasets: [{
                     label: 'Flujo de Caja',
                     data: cfData,
-                    borderColor: '#6c5ce7',
+                    borderColor: '#4ecdc4',
                     backgroundColor: 'rgba(108,92,231,0.1)',
                     fill: true,
                     tension: 0.4,
