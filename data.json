@@ -1,0 +1,32 @@
+{
+  "months": {
+    "0": { "income": { "Salario": 0, "Comisiones": 0, "Otros": 0 }, "savings": { "Viajes": 0, "General": 0, "Emergencia": 0, "Inversiones": 0 }, "expenses": [] },
+    "1": { "income": { "Salario": 0, "Comisiones": 0, "Otros": 0 }, "savings": { "Viajes": 0, "General": 0, "Emergencia": 0, "Inversiones": 0 }, "expenses": [] },
+    "2": { "income": { "Salario": 0, "Comisiones": 0, "Otros": 0 }, "savings": { "Viajes": 0, "General": 0, "Emergencia": 0, "Inversiones": 0 }, "expenses": [] },
+    "3": {
+      "income": { "Salario": 6300000, "Comisiones": 0, "Otros": 0 },
+      "savings": { "Viajes": 0, "General": 50000, "Emergencia": 0, "Inversiones": 0 },
+      "expenses": [
+        { "name": "Arriendo", "category": "Hogar", "type": "E", "freq": "Mensual", "amount": 1050000 },
+        { "name": "Teléfono", "category": "Hogar", "type": "E", "freq": "Mensual", "amount": 45000 },
+        { "name": "Internet hogar", "category": "Hogar", "type": "E", "freq": "Bimensual", "amount": 18000 },
+        { "name": "Seguridad Social", "category": "Hogar", "type": "E", "freq": "Mensual", "amount": 0 },
+        { "name": "Matrícula Isa", "category": "Educación", "type": "E", "freq": "Mensual", "amount": 275000 },
+        { "name": "Tarjeta Nu", "category": "Créditos/Deudas", "type": "E", "freq": "Mensual", "amount": 1160000 },
+        { "name": "Tarjeta Bancolombia", "category": "Créditos/Deudas", "type": "E", "freq": "Mensual", "amount": 0 },
+        { "name": "Pasajes", "category": "Transporte", "type": "E", "freq": "Mensual", "amount": 0 },
+        { "name": "Taxi/Uber", "category": "Transporte", "type": "NE", "freq": "Mensual", "amount": 0 },
+        { "name": "Viajes", "category": "Entretenimiento", "type": "NE", "freq": "Semestral", "amount": 600000 },
+        { "name": "Suscripciones", "category": "Entretenimiento", "type": "NE", "freq": "Mensual", "amount": 12000 }
+      ]
+    },
+    "4": { "income": { "Salario": 0, "Comisiones": 0, "Otros": 0 }, "savings": { "Viajes": 0, "General": 0, "Emergencia": 0, "Inversiones": 0 }, "expenses": [] },
+    "5": { "income": { "Salario": 0, "Comisiones": 0, "Otros": 0 }, "savings": { "Viajes": 0, "General": 0, "Emergencia": 0, "Inversiones": 0 }, "expenses": [] },
+    "6": { "income": { "Salario": 0, "Comisiones": 0, "Otros": 0 }, "savings": { "Viajes": 0, "General": 0, "Emergencia": 0, "Inversiones": 0 }, "expenses": [] },
+    "7": { "income": { "Salario": 0, "Comisiones": 0, "Otros": 0 }, "savings": { "Viajes": 0, "General": 0, "Emergencia": 0, "Inversiones": 0 }, "expenses": [] },
+    "8": { "income": { "Salario": 0, "Comisiones": 0, "Otros": 0 }, "savings": { "Viajes": 0, "General": 0, "Emergencia": 0, "Inversiones": 0 }, "expenses": [] },
+    "9": { "income": { "Salario": 0, "Comisiones": 0, "Otros": 0 }, "savings": { "Viajes": 0, "General": 0, "Emergencia": 0, "Inversiones": 0 }, "expenses": [] },
+    "10": { "income": { "Salario": 0, "Comisiones": 0, "Otros": 0 }, "savings": { "Viajes": 0, "General": 0, "Emergencia": 0, "Inversiones": 0 }, "expenses": [] },
+    "11": { "income": { "Salario": 0, "Comisiones": 0, "Otros": 0 }, "savings": { "Viajes": 0, "General": 0, "Emergencia": 0, "Inversiones": 0 }, "expenses": [] }
+  }
+}

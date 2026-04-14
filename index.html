@@ -837,7 +837,6 @@
         const saved = localStorage.getItem('budgetDataV2');
         if (saved) {
             const d = JSON.parse(saved);
-            // Migration: for any month with empty expenses, load the template
             for (let i = 0; i < 12; i++) {
                 if (!d.months[i]) d.months[i] = emptyMonth(i);
                 if (!d.months[i].expenses || d.months[i].expenses.length === 0) {
@@ -858,6 +857,37 @@
     }
 
     let data = loadData();
+
+    // Load remote data from data.json and merge with local
+    async function loadRemoteData() {
+        try {
+            const res = await fetch('data.json?t=' + Date.now());
+            if (!res.ok) return;
+            const remote = await res.json();
+            // Merge remote into local — remote wins for non-empty months
+            for (let i = 0; i < 12; i++) {
+                const rm = remote.months[i];
+                if (!rm) continue;
+                const hasRemoteData = (rm.expenses && rm.expenses.length > 0) ||
+                    Object.values(rm.income || {}).some(v => v > 0) ||
+                    Object.values(rm.savings || {}).some(v => v > 0);
+                if (hasRemoteData) {
+                    data.months[i] = rm;
+                    // Ensure template expenses exist for months with no expenses
+                    if (!data.months[i].expenses || data.months[i].expenses.length === 0) {
+                        data.months[i].expenses = makeMonthExpenses(i === 3);
+                    }
+                }
+            }
+            saveData(data);
+            render();
+        } catch (e) {
+            console.log('Using local data only');
+        }
+    }
+    loadRemoteData();
+    // Auto-refresh from remote every 30 seconds
+    setInterval(loadRemoteData, 30000);
 
     // Shortcut to current month's data
     function cm() {
